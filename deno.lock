@@ -121,6 +121,8 @@
     "https://esm.sh/preact@10.13.1": "ae382301328ab874e2c42bee76e261bb8d094673fe76ca7eb71917636d43d8ad",
     "https://esm.sh/preact@10.13.1/hooks": "1813f80c6d648f8137a62569e35972b0716f92539f192d6db66d45b7aafea43a",
     "https://esm.sh/preact@10.13.1/jsx-runtime": "0caf2b2eade93af59e89abc31816b6cb2829a9b8a82b958c0ebc1d8bec241e2a",
+    "https://esm.sh/stable/preact@10.11.0/deno/hooks.js": "48b7674c1f0c2a0f8a0f758b786f5bc15ba0f7a4f3a356ecc783848f1e4a1c55",
+    "https://esm.sh/stable/preact@10.11.0/deno/preact.js": "071b515099e5dff2fe56768be62644e32fab702b194171357ccc4d7d1210144a",
     "https://esm.sh/stable/preact@10.13.1/deno/hooks.js": "f25445c4f9fa6742119c41db4a85a2f75ee6ea941c506ae8ad3b1568c7692c61",
     "https://esm.sh/stable/preact@10.13.1/deno/jsx-runtime.js": "7c8e1b8f272996846cbac0837dcb71f6f8cfc82611b3f7819501d07c37383dc0",
     "https://esm.sh/stable/preact@10.13.1/deno/preact.mjs": "9b73545225d0ed274c89f39aee524a2857c81a73060e80c2c4bdc2a6de7bec26",
