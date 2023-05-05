@@ -4,7 +4,7 @@ import Voting from "../islands/Voting.tsx";
 
 export default function Home() {
     return (
-        <>
+        <div class={'bg-gray-100 h-screen'}>
             <Head>
                 <title>Emerald University</title>
             </Head>
@@ -24,6 +24,6 @@ export default function Home() {
 
                 <Voting/>
             </div>
-        </>
+        </div>
     );
 }
