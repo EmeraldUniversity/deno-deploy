@@ -58,7 +58,7 @@ export default function Voting() {
 
     return (
         <div>
-            <div class="flex gap-2 w-full">
+            <div class="flex gap-2 w-full items-center">
                 <p class="flex-grow-1 font-bold text-xl">Java: {messages.filter(m => m.vote === "java").length}</p>
                 <p class="flex-grow-1 font-bold text-xl">.NET: {messages.filter(m => m.vote === ".net").length}</p>
                 <Button onMouseDown={sendTyping} onClick={() => vote("java")}>Java</Button>
