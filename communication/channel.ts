@@ -27,7 +27,7 @@ export class RoomChannel {
         this.#channel.close();
     }
 
-    sendText(message: Omit<RoomVoteChannelMessage, "kind">) {
+    sendVote(message: Omit<RoomVoteChannelMessage, "kind">) {
         this.#channel.postMessage({
             kind: "vote",
             ...message,
@@ -37,7 +37,7 @@ export class RoomChannel {
     sendIsTyping(user: string) {
         const message: RoomIsTypingChannelMessage = {
             kind: "isTyping",
-            from: user,
+            user: user,
         };
         this.#channel.postMessage(message);
     }

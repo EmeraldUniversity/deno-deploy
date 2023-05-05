@@ -8,13 +8,13 @@ export interface RoomVoteChannelMessage extends MessageView {
 
 export interface RoomIsTypingChannelMessage {
     kind: "isTyping";
-    from: string;
+    user: string;
 }
 
 export interface MessageView {
-    message: string;
-    from: string;
-    createdAt: string;
+    user: string;
+    vote: string;
+    timestamp: string;
 }
 
 export interface RoomView {

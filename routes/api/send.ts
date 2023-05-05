@@ -1,7 +1,6 @@
-import { HandlerContext } from "$fresh/server.ts";
-import { RoomChannel } from "../../communication/channel.ts";
-import { ApiSendMessage } from "../../communication/types.ts";
-import { Kafka } from "npm:@upstash/kafka"
+import {HandlerContext} from "$fresh/server.ts";
+import {RoomChannel} from "../../communication/channel.ts";
+import {ApiSendMessage} from "../../communication/types.ts";
 
 
 export async function handler(
@@ -24,12 +23,23 @@ export async function handler(
     const message = data.message,
         now = new Date();
 
-    channel.sendText({
-        message: message,
-        from,
-        createdAt: now.toISOString(),
-    });
+    const vote = {
+        user: from,
+        vote: message,
+        timestamp: now.toISOString()
+    };
+
+    channel.sendVote(vote);
     channel.close();
+
+    fetch(`${Deno.env.get("UPSTASH_KAFKA_REST_URL")}/produce/voting/${JSON.stringify(vote)}`, {
+        headers: {
+            Authorization: `Basic ${Deno.env.get("UPSTASH_KAFKA_REST_TOKEN")}`
+        }
+    }).then(response => response.json())
+        .then(data => {
+            console.log(data)
+        });
 
     return new Response("OK");
 }

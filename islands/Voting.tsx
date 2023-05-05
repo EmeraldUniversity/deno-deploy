@@ -30,15 +30,15 @@ export default function Voting() {
                         setTyping(null);
                     }, 5000);
                     setTyping({
-                        user: msg.from,
+                        user: msg.user,
                         interval,
                     });
                     break;
                 }
                 case "vote":
                     addMessage(msg);
-                    new Notification(`New message from ${msg.from}`, {
-                        body: msg.message,
+                    new Notification(`New message from ${msg.user}`, {
+                        body: msg.vote,
                     });
                     break;
             }
@@ -64,10 +64,10 @@ export default function Voting() {
     return (
         <div>
             <div class="flex gap-2 w-full">
-                <p class="flex-grow-1 font-bold text-xl">Java: {messages.filter(m => m.message === "java").length}</p>
-                <p class="flex-grow-1 font-bold text-xl">C#: {messages.filter(m => m.message === "c#").length}</p>
+                <p class="flex-grow-1 font-bold text-xl">Java: {messages.filter(m => m.vote === "java").length}</p>
+                <p class="flex-grow-1 font-bold text-xl">C#: {messages.filter(m => m.vote === "c#").length}</p>
                 <Button onMouseDown={sendTyping} onClick={() => vote("java")}>Java</Button>
-                <Button onMouseDown={sendTyping} onClick={() => vote("c#")}>C#</Button>
+                <Button onMouseDown={sendTyping} onClick={() => vote(".net")}>.NET</Button>
             </div>
             {
                 typing && (
