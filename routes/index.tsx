@@ -6,7 +6,7 @@ export default function Home() {
     return (
         <>
             <Head>
-                <title>Fresh App</title>
+                <title>Emerald University</title>
             </Head>
             <div class="p-4 mx-auto max-w-screen-sm">
                 <img
