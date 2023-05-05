@@ -18,8 +18,6 @@ export default function Voting() {
     const [user , setUser] = useState('')
 
     useEffect(() => {
-        Notification.requestPermission();
-
         const subscription = server.subscribeMessages(roomId, (msg) => {
             switch (msg.kind) {
                 case "isTyping": {
@@ -37,9 +35,6 @@ export default function Voting() {
                 }
                 case "vote":
                     addMessage(msg);
-                    new Notification(`New message from ${msg.user}`, {
-                        body: msg.vote,
-                    });
                     break;
             }
         });
@@ -65,7 +60,7 @@ export default function Voting() {
         <div>
             <div class="flex gap-2 w-full">
                 <p class="flex-grow-1 font-bold text-xl">Java: {messages.filter(m => m.vote === "java").length}</p>
-                <p class="flex-grow-1 font-bold text-xl">C#: {messages.filter(m => m.vote === ".net").length}</p>
+                <p class="flex-grow-1 font-bold text-xl">.NET: {messages.filter(m => m.vote === ".net").length}</p>
                 <Button onMouseDown={sendTyping} onClick={() => vote("java")}>Java</Button>
                 <Button onMouseDown={sendTyping} onClick={() => vote(".net")}>.NET</Button>
             </div>
