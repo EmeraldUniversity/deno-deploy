@@ -22,8 +22,9 @@ export class Server {
         };
     }
 
-    sendMessage(roomId: number, message: string) {
+    sendMessage(roomId: number, user: string, message: string) {
         const data: ApiTextMessage = {
+            user,
             kind: "vote",
             message,
             roomId,
@@ -34,8 +35,9 @@ export class Server {
         });
     }
 
-    sendIsTyping(roomId: number) {
+    sendIsTyping(roomId: number, user: string) {
         const data: ApiIsTypingMessage = {
+            user,
             kind: "isTyping",
             roomId,
         };

@@ -2,11 +2,12 @@ import {Button} from "../components/Button.tsx";
 import type {MessageView} from "../communication/types.ts";
 import {server} from "../communication/server.ts";
 import {useState, useReducer, useEffect} from "preact/hooks";
+import getBrowserFingerprint from "https://cdn.jsdelivr.net/npm/get-browser-fingerprint@3.0.0/src/index.min.js";
 
 const roomId = 0;
 
 
-export default function Voting({user}: { user: string }) {
+export default function Voting() {
     const [typing, setTyping] = useState<
         { user: string; interval: number } | null
     >(null);
@@ -14,6 +15,7 @@ export default function Voting({user}: { user: string }) {
         (msgs, msg) => [msg, ...msgs],
         [],
     );
+    const [user , setUser] = useState('')
 
     useEffect(() => {
         Notification.requestPermission();
@@ -47,19 +49,23 @@ export default function Voting({user}: { user: string }) {
         };
     }, [user]);
 
+    useEffect(() => {
+        setUser(getBrowserFingerprint().toString())
+    }, [])
+
     const vote = (option: string) => {
-        server.sendMessage(roomId, option);
+        server.sendMessage(roomId, user, option);
     };
 
     const sendTyping = () => {
-        server.sendIsTyping(roomId);
+        server.sendIsTyping(roomId, user);
     }
 
     return (
         <div>
             <div class="flex gap-2 w-full">
                 <p class="flex-grow-1 font-bold text-xl">Java: {messages.filter(m => m.message === "java").length}</p>
-                <p class="flex-grow-1 font-bold text-xl">C# {messages.filter(m => m.message === "c#").length}</p>
+                <p class="flex-grow-1 font-bold text-xl">C#: {messages.filter(m => m.message === "c#").length}</p>
                 <Button onMouseDown={sendTyping} onClick={() => vote("java")}>Java</Button>
                 <Button onMouseDown={sendTyping} onClick={() => vote("c#")}>C#</Button>
             </div>

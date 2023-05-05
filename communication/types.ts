@@ -26,12 +26,14 @@ export interface RoomView {
 export type ApiSendMessage = ApiTextMessage | ApiIsTypingMessage;
 
 export interface ApiTextMessage {
+    user: string;
     kind: "vote";
     roomId: number;
     message: string;
 }
 
 export interface ApiIsTypingMessage {
+    user: string;
     kind: "isTyping";
     roomId: number;
 }

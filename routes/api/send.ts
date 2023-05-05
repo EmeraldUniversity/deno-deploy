@@ -1,14 +1,18 @@
 import { HandlerContext } from "$fresh/server.ts";
 import { RoomChannel } from "../../communication/channel.ts";
 import { ApiSendMessage } from "../../communication/types.ts";
+import { Kafka } from "npm:@upstash/kafka"
+
 
 export async function handler(
     req: Request,
     _ctx: HandlerContext,
 ): Promise<Response> {
     const data = (await req.json()) as ApiSendMessage;
+    console.log(data);
+
     const channel = new RoomChannel(data.roomId);
-    const from = "Faustino Neri";
+    const from = data.user;
 
     if (data.kind === "isTyping") {
         // Send `is typing...` indicator.
