@@ -15,9 +15,13 @@ export default function Home() {
                     alt="the fresh logo: a sliced lemon dripping with juice"
                 />
 
-                <p class="my-6">
-                    Welcome to Emerald University. Vote for your favorite programming language (you can vote many times).
+                <p class="my-6 text-4xl text-gray-900 pb-0 mb-0">
+                    Welcome to Emerald University
                 </p>
+                <p class="my-6 text-lg text-gray-500">
+                    Vote for your favorite programming language (you can vote many times).
+                </p>
+
                 <Voting/>
             </div>
         </>

@@ -28,7 +28,7 @@ export default function Voting() {
                     }
                     const interval = setTimeout(() => {
                         setTyping(null);
-                    }, 5000);
+                    }, 1500);
                     setTyping({
                         user: msg.user,
                         interval,
@@ -65,14 +65,14 @@ export default function Voting() {
         <div>
             <div class="flex gap-2 w-full">
                 <p class="flex-grow-1 font-bold text-xl">Java: {messages.filter(m => m.vote === "java").length}</p>
-                <p class="flex-grow-1 font-bold text-xl">C#: {messages.filter(m => m.vote === "c#").length}</p>
+                <p class="flex-grow-1 font-bold text-xl">C#: {messages.filter(m => m.vote === ".net").length}</p>
                 <Button onMouseDown={sendTyping} onClick={() => vote("java")}>Java</Button>
                 <Button onMouseDown={sendTyping} onClick={() => vote(".net")}>.NET</Button>
             </div>
             {
                 typing && (
                     <div class="w-full text-xl text-gray-400">
-                        <span class="text-gray-800">{typing.user}</span> is typing...
+                        <span class="text-gray-800">{typing.user}</span> is voting...
                     </div>
                 )
             }

@@ -14,7 +14,7 @@ export interface RoomIsTypingChannelMessage {
 export interface MessageView {
     user: string;
     vote: string;
-    timestamp: string;
+    timestamp: number;
 }
 
 export interface RoomView {

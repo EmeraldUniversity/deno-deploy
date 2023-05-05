@@ -8,8 +8,6 @@ export async function handler(
     _ctx: HandlerContext,
 ): Promise<Response> {
     const data = (await req.json()) as ApiSendMessage;
-    console.log(data);
-
     const channel = new RoomChannel(data.roomId);
     const from = data.user;
 
@@ -26,20 +24,23 @@ export async function handler(
     const vote = {
         user: from,
         vote: message,
-        timestamp: now.toISOString()
+        timestamp: Math.floor(now.getTime() / 1000)
     };
 
     channel.sendVote(vote);
     channel.close();
 
-    fetch(`${Deno.env.get("UPSTASH_KAFKA_REST_URL")}/produce/voting/${JSON.stringify(vote)}`, {
+    await fetch(`${Deno.env.get("KAFKA_REST_URL")}/topics/votes/records`, {
+        method: 'POST',
         headers: {
-            Authorization: `Basic ${Deno.env.get("UPSTASH_KAFKA_REST_TOKEN")}`
-        }
-    }).then(response => response.json())
-        .then(data => {
-            console.log(data)
-        });
+            "Content-Type": "application/json",
+            Authorization: `Basic ${Deno.env.get("KAFKA_REST_TOKEN")}`
+        },
+        body: JSON.stringify({value: {type: "JSON", data: vote}})
+    });
+
+    // console.log(vote);
+    // console.log(result);
 
     return new Response("OK");
 }
